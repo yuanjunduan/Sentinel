@@ -46,7 +46,7 @@ public final class NacosConfigUtil {
 
     public static final String AUTHORITY_DATA_ID_POSTFIX = "-authority-rules";
     public static final String CLUSTER_MAP_DATA_ID_POSTFIX = "-cluster-map";
-    public static final String DASHBOARD_POSTFIX = "-dashboard";
+//    public static final String DASHBOARD_POSTFIX = "-dashboard";
 
     /**
      * cc for `cluster-client`
@@ -77,7 +77,8 @@ public final class NacosConfigUtil {
      */
     public static <T> List<T> getRuleEntities4Nacos(ConfigService configService, String appName, String postfix, Class<T> clazz) throws NacosException {
         //去nacos注册中心获取配置
-        String rules = configService.getConfig(genDataId(appName, postfix) + DASHBOARD_POSTFIX, NacosConfigUtil.GROUP_ID, 3000);
+//        String rules = configService.getConfig(genDataId(appName, postfix) + DASHBOARD_POSTFIX, NacosConfigUtil.GROUP_ID, 3000);
+        String rules = configService.getConfig(genDataId(appName, postfix), NacosConfigUtil.GROUP_ID, 3000);
 
         if (StringUtil.isEmpty(rules)) {
             return new ArrayList<>();
@@ -127,11 +128,11 @@ public final class NacosConfigUtil {
         );
 
         // 存储，给控制台使用
-        configService.publishConfig(
-                dataId + DASHBOARD_POSTFIX,
-                NacosConfigUtil.GROUP_ID,
-                JSONUtils.toJSONString(rules)
-        );
+//        configService.publishConfig(
+//                dataId + DASHBOARD_POSTFIX,
+//                NacosConfigUtil.GROUP_ID,
+//                JSONUtils.toJSONString(rules)
+//        );
     }
 
     /**
